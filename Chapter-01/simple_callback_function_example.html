@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $("div").hide("drop", function(){
+            alert("Hi! I called callback.");
+        });
+    });
+});
+</script>
+</head>
+<body>
+
+<button>Callback</button>
+
+<div>Contents in this area will be hide using callback function.</div>
+
+</body>
+</html>
