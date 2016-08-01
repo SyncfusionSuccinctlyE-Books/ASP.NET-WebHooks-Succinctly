@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using BitBucketSampleReceiverApp.Constants;
+using BitBucketSampleReceiverApp.Models;
 using Microsoft.AspNet.WebHooks;
 using Newtonsoft.Json.Linq;
 
@@ -17,16 +18,23 @@ namespace BitBucketSampleReceiverApp.WebHooks
         {
             var dataJObject = context.GetDataOrDefault<JObject>();
             var action = context.Actions.First();
+            var pushModel = new PushModel();
             switch (action)
             {
                 case BitBucketRepoAction.Push:
-                    var repository = dataJObject["repository"].ToObject<BitbucketRepository>();
-                    var actor = dataJObject["actor"].ToObject<BitbucketUser>();
-                    AssessChanges(dataJObject);
+                    
+                    pushModel.Repository = dataJObject["repository"].ToObject<BitbucketRepository>();
+                    pushModel.User = dataJObject["actor"].ToObject<BitbucketUser>();
+                    foreach (var change in dataJObject["push"]["changes"])
+                    {
+                        pushModel.Previous = change["old"]["target"].ToObject<BitbucketTarget>();
+
+                        pushModel.Current = change["new"]["target"].ToObject<BitbucketTarget>();
+                    }
                     break;
 
                 default:
-                    var data = dataJObject.ToString();
+                    pushModel.RawData = dataJObject.ToString();
                     break;
             }
             return Task.FromResult(true);
