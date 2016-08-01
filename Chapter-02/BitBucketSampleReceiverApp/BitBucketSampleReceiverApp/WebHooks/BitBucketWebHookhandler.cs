@@ -21,7 +21,7 @@ namespace BitBucketSampleReceiverApp.WebHooks
             var pushModel = new PushModel();
             switch (action)
             {
-                case BitBucketRepoAction.Push:
+                case "repo:push":
                     
                     pushModel.Repository = dataJObject["repository"].ToObject<BitbucketRepository>();
                     pushModel.User = dataJObject["actor"].ToObject<BitbucketUser>();
