@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.AspNet.WebHooks.Receivers.Bitbucket</name>
+    </assembly>
+    <members>
+        <member name="T:System.Web.Http.HttpConfigurationExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Web.Http.HttpConfiguration"/>.
+            </summary>
+        </member>
+        <member name="M:System.Web.Http.HttpConfigurationExtensions.InitializeReceiveBitbucketWebHooks(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Initializes support for receiving Bitbucket WebHooks.
+            A sample WebHook URI is '<c>https://&lt;host&gt;/api/webhooks/incoming/bitbucket/{id}?code=83699ec7c1d794c0c780e49a5c72972590571fd8</c>'.
+            For security reasons the WebHook URI must be an <c>https</c> URI and contain a 'code' query parameter with the
+            same value as configured in the '<c>MS_WebHookReceiverSecret_Bitbucket</c>' application setting.
+            The 'code' parameter must be between 32 and 128 characters long.
+            For details about Bitbucket WebHooks, see <c>https://confluence.atlassian.com/bitbucket/manage-webhooks-735643732.html</c>.
+            </summary>
+            <param name="config">The current <see cref="T:System.Web.Http.HttpConfiguration"/>config.</param>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.Properties.BitbucketReceiverResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.BitbucketReceiverResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.BitbucketReceiverResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.BitbucketReceiverResources.Receiver_NoEvent">
+            <summary>
+              Looks up a localized string similar to The WebHook request must contain a &apos;{0}&apos; HTTP header indicating the type of event..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.BitbucketReceiverResources.Receiver_NoId">
+            <summary>
+              Looks up a localized string similar to The WebHook request must contain a &apos;{0}&apos; HTTP header indicating the ID of the WebHook..
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.BitbucketTarget">
+            <summary>
+            Contains details about the most recent operation to a Bitbucket repository after a push.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketTarget.Message">
+            <summary>
+            Gets or sets the email alias for this author.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketTarget.Operation">
+            <summary>
+            The type of operation on the repository, e.g. 'commit'.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketTarget.Links">
+            <summary>
+            Gets the collection of <see cref="T:Microsoft.AspNet.WebHooks.BitbucketLink"/> instances and their link relationships. The
+            key is the link relationship and the value is the actual link.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketTarget.Hash">
+            <summary>
+            Gets or sets the hash of the commit
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketTarget.Parents">
+            <summary>
+            Gets the collection of <see cref="T:Microsoft.AspNet.WebHooks.BitbucketParent"/> instances for this target.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketTarget.Author">
+            <summary>
+            Gets or sets the <see cref="T:Microsoft.AspNet.WebHooks.BitbucketAuthor"/> for this target.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketTarget.Date">
+            <summary>
+            Gets or set the UTC time of this target.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.BitbucketRepository">
+            <summary>
+            Contains information about a Bitbucket repository.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketRepository.RepositoryId">
+            <summary>
+            Gets or sets a unique ID for this repository.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketRepository.FullName">
+            <summary>
+            Gets or sets the full name of the repository, e.g. '<c>someuser/myrepo</c>'.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketRepository.Name">
+            <summary>
+            Gets or sets the name of the repository, e.g. '<c>myrepo</c>'.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketRepository.IsPrivate">
+            <summary>
+            Gets or sets a value indicating with the repository is private or not.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketRepository.Links">
+            <summary>
+            Gets the collection of <see cref="T:Microsoft.AspNet.WebHooks.BitbucketLink"/> instances and their link relationships. The
+            key is the link relationship and the value is the actual link.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketRepository.ItemType">
+            <summary>
+            Gets or sets the kind of this element, e.g. '<c>repository</c>'.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketRepository.RepositoryType">
+            <summary>
+            Gets or sets the type of repository, e.g. '<c>hg</c>'.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketRepository.Owner">
+            <summary>
+            Gets or sets the Bitbucket user information for owner of the repository.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.BitbucketAuthor">
+            <summary>
+            Contains information about a Bitbucket author.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketAuthor.User">
+            <summary>
+            Gets or sets the Bitbucket user information for this author.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketAuthor.Raw">
+            <summary>
+            Gets or sets the raw author in the form of a name and email alias.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.BitbucketParent">
+            <summary>
+            Contains information about a parent commit in Bitbucket.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketParent.Hash">
+            <summary>
+            Gets or sets the hash of the parent commit.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketParent.Operation">
+            <summary>
+            The type of operation on the repository, e.g. 'commit'.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketParent.Links">
+            <summary>
+            Gets the collection of <see cref="T:Microsoft.AspNet.WebHooks.BitbucketLink"/> instances and their link relationships. The
+            key is the link relationship and the value is the actual link.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.BitbucketUser">
+            <summary>
+            Contains information about a user in Bitbucket.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketUser.UserId">
+            <summary>
+            Gets or sets a unique ID for this user.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketUser.UserType">
+            <summary>
+            Gets or sets the type of the user.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketUser.DisplayName">
+            <summary>
+            Gets or sets the the first and last name of the user.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketUser.UserName">
+            <summary>
+            Gets or sets the user name for this user.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketUser.Links">
+            <summary>
+            Gets the collection of <see cref="T:Microsoft.AspNet.WebHooks.BitbucketLink"/> instances and their link relationships. The
+            key is the link relationship and the value is the actual link.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.BitbucketLink">
+            <summary>
+            Contains information about a link in Bitbucket.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketLink.Reference">
+            <summary>
+            Gets or sets the URI of the link.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.BitbucketWebHookReceiver">
+            <summary>
+            Provides an <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> implementation which supports WebHooks generated by Bitbucket. 
+            A sample WebHook URI is '<c>https://&lt;host&gt;/api/webhooks/incoming/bitbucket/{id}?code=83699ec7c1d794c0c780e49a5c72972590571fd8</c>'.
+            For security reasons the WebHook URI must be an <c>https</c> URI and contain a 'code' query parameter with the
+            same value as configured in the '<c>MS_WebHookReceiverSecret_Bitbucket</c>' application setting.
+            The 'code' parameter must be between 32 and 128 characters long.
+            For details about Bitbucket WebHooks, see <c>https://confluence.atlassian.com/bitbucket/manage-webhooks-735643732.html/</c>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketWebHookReceiver.ReceiverName">
+            <summary>
+            Gets the receiver name for this receiver.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.BitbucketWebHookReceiver.Name">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.BitbucketWebHookReceiver.ReceiveAsync(System.String,System.Web.Http.Controllers.HttpRequestContext,System.Net.Http.HttpRequestMessage)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,748 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.AspNet.WebHooks.Receivers</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.AspNet.WebHooks.Controllers.WebHookReceiversController">
+            <summary>
+            Accepts incoming WebHook requests and dispatches them to registered <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> instances.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Controllers.WebHookReceiversController.Get(System.String,System.String)">
+            <summary>
+            Supports GET for incoming WebHook request. This is typically used to verify that a WebHook is correctly wired up.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Controllers.WebHookReceiversController.Head(System.String,System.String)">
+            <summary>
+            Supports HEAD for incoming WebHook request. This is typically used to verify that a WebHook is correctly wired up.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Controllers.WebHookReceiversController.Post(System.String,System.String)">
+            <summary>
+            Supports POST for incoming WebHook requests. This is typically the actual WebHook. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.DependencyScopeExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Web.Http.Dependencies.IDependencyScope"/> facilitating getting the services used for receiving incoming WebHooks.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.DependencyScopeExtensions.GetReceiverManager(System.Web.Http.Dependencies.IDependencyScope)">
+            <summary>
+            Gets an <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiverManager"/> implementation registered with the Dependency Injection engine
+            or a default implementation if none is registered.
+            </summary>
+            <param name="services">The <see cref="T:System.Web.Http.Dependencies.IDependencyScope"/> implementation.</param>
+            <returns>The registered <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiverManager"/> instance or a default implementation if none are registered.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.DependencyScopeExtensions.GetReceiverConfig(System.Web.Http.Dependencies.IDependencyScope)">
+            <summary>
+            Gets an <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiverConfig"/> implementation registered with the Dependency Injection engine
+            or a default implementation if none is registered.
+            </summary>
+            <param name="services">The <see cref="T:System.Web.Http.Dependencies.IDependencyScope"/> implementation.</param>
+            <returns>The registered <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiverManager"/> instance or a default implementation if none are registered.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.DependencyScopeExtensions.GetHandlerSorter(System.Web.Http.Dependencies.IDependencyScope)">
+            <summary>
+            Gets an <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandlerSorter"/> implementation registered with the Dependency Injection engine
+            or a default implementation if none is registered.
+            </summary>
+            <param name="services">The <see cref="T:System.Web.Http.Dependencies.IDependencyScope"/> implementation.</param>
+            <returns>The registered <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiverManager"/> instance or a default implementation if none are registered.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.DependencyScopeExtensions.GetReceivers(System.Web.Http.Dependencies.IDependencyScope)">
+            <summary>
+            Gets the set of <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> instances registered with the Dependency Injection engine
+            or an empty collection if none are registered.
+            </summary>
+            <param name="services">The <see cref="T:System.Web.Http.Dependencies.IDependencyScope"/> implementation.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing the registered instances.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.DependencyScopeExtensions.GetHandlers(System.Web.Http.Dependencies.IDependencyScope)">
+            <summary>
+            Gets the set of <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/> instances registered with the Dependency Injection engine
+            or an empty collection if none are registered.
+            </summary>
+            <param name="services">The <see cref="T:System.Web.Http.Dependencies.IDependencyScope"/> implementation.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing the registered instances.</returns>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.WebHookHandlerContextExtensions">
+            <summary>
+            Various extension methods for the <see cref="T:Microsoft.AspNet.WebHooks.WebHookHandlerContext"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookHandlerContextExtensions.GetDataOrDefault``1(Microsoft.AspNet.WebHooks.WebHookHandlerContext)">
+            <summary>
+            Gets the <see cref="P:Microsoft.AspNet.WebHooks.WebHookHandlerContext.Data"/> property as type <typeparamref name="T"/>. If the 
+            contents is not of type <typeparamref name="T"/> then <c>null</c> is returned.
+            </summary>
+            <typeparam name="T">The type to convert <see cref="P:Microsoft.AspNet.WebHooks.WebHookHandlerContext.Data"/> to.</typeparam>
+            <param name="context">The <see cref="T:Microsoft.AspNet.WebHooks.WebHookHandlerContext"/> to operate on.</param>
+            <returns>An instance of type <typeparamref name="T"/> or <c>null</c> otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookHandlerContextExtensions.TryGetData``1(Microsoft.AspNet.WebHooks.WebHookHandlerContext,``0@)">
+            <summary>
+            Tries getting the <see cref="P:Microsoft.AspNet.WebHooks.WebHookHandlerContext.Data"/> property as type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type to convert <see cref="P:Microsoft.AspNet.WebHooks.WebHookHandlerContext.Data"/> to.</typeparam>
+            <param name="context">The <see cref="T:Microsoft.AspNet.WebHooks.WebHookHandlerContext"/> to operate on.</param>
+            <param name="value">The converted value.</param>
+            <returns>An instance of type <typeparamref name="T"/> or <c>null</c> otherwise.</returns>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.WebHookReceiverConfigExtensions">
+            <summary>
+            Various extension methods for the <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiverConfig"/> interface.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiverConfigExtensions.GetReceiverConfigAsync(Microsoft.AspNet.WebHooks.IWebHookReceiverConfig,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Gets the receiver configuration with the given <paramref name="name"/> and <paramref name="id"/>.
+            </summary>
+            <param name="config">The current <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiverConfig"/>.</param>
+            <param name="name">The name of the configuration to obtain. Typically this is the name of the receiver, e.g. <c>github</c>.</param>
+            <param name="id">A (potentially empty) ID of a particular configuration for this <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/>. This
+            allows an <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> to support multiple WebHooks with individual configurations.</param>
+            <param name="minLength">The minimum length of the key value.</param>
+            <param name="maxLength">The maximum length of the key value.</param>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.Properties.ReceiverResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Config_AddedName">
+            <summary>
+              Looks up a localized string similar to Registered configuration setting &apos;{0}&apos; for ID &apos;{1}&apos;&apos;..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Config_AddFailure">
+            <summary>
+              Looks up a localized string similar to Could not add configuration for receiver &apos;{0}&apos; and id &apos;{1}&apos;: {2}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Config_BadValue">
+            <summary>
+              Looks up a localized string similar to The &apos;{0}&apos; application setting must have a comma-separated value of one or more secrets of the form &lt;secret&gt; or &lt;id&gt;=&lt;secret&gt;..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Config_NoConfig">
+            <summary>
+              Looks up a localized string similar to Did not find any applications settings of the form &apos;{0}&apos;. To receive WebHooks, please add corresponding applications settings..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.GetDataOrDefault_Failure">
+            <summary>
+              Looks up a localized string similar to Could not deserialize instance of type &apos;{0}&apos; as &apos;{1}&apos;: {2}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Manager_MultipleAmbiguousReceiversFound">
+            <summary>
+              Looks up a localized string similar to Multiple types were found that match the WebHook receiver named &apos;{0}&apos;. This can happen if multiple receivers are defined with the same name but different casing which is not supported. The request for &apos;{0}&apos; has found the following matching receivers: {1}{2}..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Manager_RegisteredNames">
+            <summary>
+              Looks up a localized string similar to Registered &apos;{0}&apos; instances with the following names: {1}..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Manager_UnknownReceiver">
+            <summary>
+              Looks up a localized string similar to No WebHook receiver has been registered with the name &apos;{0}&apos;. Please use one of the registered receivers..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.QueueHandler_EnqueueError">
+            <summary>
+              Looks up a localized string similar to Could not enqueue WebHook: {0}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Receiver_BadCode">
+            <summary>
+              Looks up a localized string similar to The &apos;{0}&apos; query parameter provided in the HTTP request did not match the expected value..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Receiver_BadFormData">
+            <summary>
+              Looks up a localized string similar to The WebHook request contained invalid HTML Form Data: &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Receiver_BadHeader">
+            <summary>
+              Looks up a localized string similar to Expecting exactly one &apos;{0}&apos; header field in the WebHook request but found {1}. Please ensure that the request contains exactly one &apos;{0}&apos; header field..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Receiver_BadJson">
+            <summary>
+              Looks up a localized string similar to The WebHook request contained invalid JSON: &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Receiver_BadMethod">
+            <summary>
+              Looks up a localized string similar to The HTTP &apos;{0}&apos; method is not supported by the &apos;{1}&apos; WebHook receiver..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Receiver_BadSecret">
+            <summary>
+              Looks up a localized string similar to Could not find a valid configuration for WebHook receiver &apos;{0}&apos; and instance &apos;{1}&apos;. The setting must be set to a value between {2} and {3} characters long..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Receiver_BadSignature">
+            <summary>
+              Looks up a localized string similar to The WebHook signature provided by the &apos;{0}&apos; header field does not match the value expected by the &apos;{1}&apos; receiver. WebHook request is invalid..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Receiver_BadXml">
+            <summary>
+              Looks up a localized string similar to The WebHook request contained invalid XML: &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Receiver_NoBody">
+            <summary>
+              Looks up a localized string similar to The WebHook request entity body cannot be empty..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Receiver_NoCode">
+            <summary>
+              Looks up a localized string similar to The WebHook verification request must contain a &apos;{0}&apos; query parameter..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Receiver_NoFormData">
+            <summary>
+              Looks up a localized string similar to The WebHook request must contain an entity body formatted as HTML Form Data..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Receiver_NoHttps">
+            <summary>
+              Looks up a localized string similar to The WebHook receiver &apos;{0}&apos; requires HTTPS in order to be secure. Please register a WebHook URI of type &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Receiver_NoJson">
+            <summary>
+              Looks up a localized string similar to The WebHook request must contain an entity body formatted as JSON..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.Receiver_NoXml">
+            <summary>
+              Looks up a localized string similar to The WebHook request must contain an entity body formatted as XML..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.ReceiverController_Failure">
+            <summary>
+              Looks up a localized string similar to WebHook receiver &apos;{0}&apos; could not process WebHook due to error: {1}.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.ReceiverController_Processing">
+            <summary>
+              Looks up a localized string similar to Processing incoming WebHook request with receiver &apos;{0}&apos; and id &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.ReceiverResources.ReceiverController_Unknown">
+            <summary>
+              Looks up a localized string similar to No WebHook receiver is registered with the name &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.Routes.WebHookReceiverRouteNames">
+            <summary>
+            Provides a set of common route names used for receiving incoming WebHooks.
+            </summary>
+        </member>
+        <member name="F:Microsoft.AspNet.WebHooks.Routes.WebHookReceiverRouteNames.ReceiversAction">
+            <summary>
+            Provides the name of the <see cref="T:Microsoft.AspNet.WebHooks.Controllers.WebHookReceiversController"/> action for receiving WebHook requests.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.ReceiverServices">
+            <summary>
+            Provides singleton instances of WebHook receiver services.
+            If alternative implementations are provided by a Dependency Injection engine then
+            those instances are used instead.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.ReceiverServices.GetReceiverManager(System.Collections.Generic.IEnumerable{Microsoft.AspNet.WebHooks.IWebHookReceiver},Microsoft.AspNet.WebHooks.Diagnostics.ILogger)">
+            <summary>
+            Gets a default <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiverManager"/> implementation which is used if none are registered with the
+            Dependency Injection engine.
+            </summary>
+            <returns>A default <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiverManager"/> instance.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.ReceiverServices.GetReceiverConfig(Microsoft.AspNet.WebHooks.Config.SettingsDictionary,Microsoft.AspNet.WebHooks.Diagnostics.ILogger)">
+            <summary>
+            Gets a default <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiverConfig"/> implementation which is used if none are registered with the
+            Dependency Injection engine.
+            </summary>
+            <returns>A default <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiverConfig"/> instance.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.ReceiverServices.SetReceiverConfig(Microsoft.AspNet.WebHooks.IWebHookReceiverConfig)">
+            <summary>
+            Sets a default <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiverConfig"/> implementation which is used if none are registered with the 
+            Dependency Injection engine.
+            </summary>
+            <param name="instance">The <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiverConfig"/> to use. If <c>null</c> then a default implementation is used.</param>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.ReceiverServices.GetHandlerSorter">
+            <summary>
+            Gets a default <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandlerSorter"/> implementation which is used if none are registered with the
+            Dependency Injection engine.
+            </summary>
+            <returns>A default <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandlerSorter"/> instance.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.ReceiverServices.GetReceivers">
+            <summary>
+            Gets the set of <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> instances discovered by a default 
+            discovery mechanism which is used if none are registered with the Dependency Injection engine.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing the discovered instances.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.ReceiverServices.GetHandlers">
+            <summary>
+            Gets the set of <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/> instances discovered by a default 
+            discovery mechanism which is used if none are registered with the Dependency Injection engine.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing the discovered instances.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.ReceiverServices.Reset">
+            <summary>
+            Resets all values for testing purposes.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.IWebHookReceiverConfig">
+            <summary>
+            Provides an abstraction for managing <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> configuration. This makes it possible
+            to manage configuration of secrets in a consistent manner separately of any given <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.IWebHookReceiverConfig.GetReceiverConfigAsync(System.String,System.String)">
+            <summary>
+            Gets the receiver configuration for a given <paramref name="name"/> and a particular <paramref name="id"/>
+            or <c>null</c> if not found.
+            </summary>
+            <param name="name">The case-insensitive name of the receiver configuration used by the incoming WebHook. The receiver 
+            name can for example be <c>dropbox</c> or <c>github</c>.</param>
+            <param name="id">A (possibly empty) ID of a particular configuration for the given <paramref name="name"/>.
+            This can be used for one receiver to differentiate between multiple configurations.</param>
+            <returns>The requested config, or <c>null</c> if not found.</returns>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.IWebHookHandlerSorter">
+            <summary>
+            Provides an abstraction for sorting registered <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/> instances based on their relative ordering.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.IWebHookHandlerSorter.SortHandlers(System.Collections.Generic.IEnumerable{Microsoft.AspNet.WebHooks.IWebHookHandler})">
+            <summary>
+            Sorts the provided <paramref name="handlers"/> hence controlling the order in which they will get executed upon
+            incoming WebHook requests. The sorter can use the Order property as input for the relative ordering.
+            </summary>
+            <param name="handlers">The set of <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/> to sort.</param>
+            <returns>The sorted list of <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/> instances.</returns>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.IWebHookHandler">
+            <summary>
+            Provides an abstraction for handling an incoming WebHook request. The <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/>
+            is independent of which WebHook generator sent the actual request. That is, <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/>
+            can process WebHook requests originating from any supported <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> such as <c>Dropbox</c>
+            and <c>GitHub</c>, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.IWebHookHandler.Order">
+            <summary>
+            Gets the relative order in which <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/> instances are executed in response to incoming WebHooks. 
+            The execution order of handler with the same order. By default the handlers are sorted based on their <see cref="P:Microsoft.AspNet.WebHooks.IWebHookHandler.Order"/> from lowest
+            to highest. That is, if there are 3 handlers with <c>Order</c> 50, 10, and 100 then they are executed in the order 10, 50, 100.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.IWebHookHandler.Receiver">
+            <summary>
+            Gets the receiver that this <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/> wants to receive WebHooks from. If <c>null</c> then
+            it will receive WebHooks from all registered receivers.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.IWebHookHandler.ExecuteAsync(System.String,Microsoft.AspNet.WebHooks.WebHookHandlerContext)">
+            <summary>
+            Executes the incoming WebHook request.
+            </summary>
+            <param name="receiver">The name of the <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> which processed the incoming WebHook. The
+            receiver can for example be <c>dropbox</c> or <c>github</c>.</param>
+            <param name="context">Provides context for the <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/> for further processing the incoming WebHook.</param>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.IWebHookReceiver">
+            <summary>
+            Provides an abstraction for processing incoming WebHooks from a particular WebHook generator, for example
+            <c>Dropbox</c>, <c>GitHub</c>, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.IWebHookReceiver.Name">
+            <summary>
+            Gets the case-insensitive name of the WebHook generator that this receiver supports, for example <c>dropbox</c> or <c>net</c>.
+             The name provided here will map to a URI of the form '<c>https://&lt;host&gt;/api/webhooks/incoming/&lt;name&gt;</c>'.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.IWebHookReceiver.ReceiveAsync(System.String,System.Web.Http.Controllers.HttpRequestContext,System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Processes the incoming WebHook request. The request may be an initialization request or it may be 
+            an actual WebHook request. It is up to the receiver to determine what kind of incoming request it
+            is and process it accordingly.
+            </summary>
+            <param name="id">A (potentially empty) ID of a particular configuration for this <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/>. This
+            allows an <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> to support multiple WebHooks with individual configurations.</param>
+            <param name="context">The <see cref="T:System.Web.Http.Controllers.HttpRequestContext"/> for the incoming request.</param>
+            <param name="request">The <see cref="T:System.Net.Http.HttpRequestMessage"/> containing the incoming WebHook.</param>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.IWebHookReceiverManager">
+            <summary>
+            Provides an abstraction for managing <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> instances which process incoming WebHook requests.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.IWebHookReceiverManager.GetReceiver(System.String)">
+            <summary>
+            Gets the <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> matching the given <paramref name="receiverName"/>.
+            </summary>
+            <param name="receiverName">Case-insensitive name of storage provider, e.g. <c>Dropbox</c>.</param>
+            <returns>A <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> representing the storage or <c>null</c> if no match is found.</returns>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.WebHookAssemblyResolver">
+            <summary>
+            Provides a custom <see cref="T:System.Web.Http.Dispatcher.IAssembliesResolver"/> implementation that ensures that the WebHooks receiver 
+            assemblies are loaded. This is useful when running ASP.NET Web API using the OWIN Self Host as there 
+            assemblies have to be loaded explicitly. For more information on running Web API in a self host, please see 
+            '<c>http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api</c>'.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookAssemblyResolver.GetAssemblies">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.WebHookHandler">
+            <summary>
+            Provides an abstract <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler" /> implementation which can be used to base other implementations on.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookHandler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNet.WebHooks.WebHookHandler"/> class with a default <see cref="P:Microsoft.AspNet.WebHooks.WebHookHandler.Order"/> of 50
+            and by default accepts WebHooks from all receivers. To limit which receiver this <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/>
+            will receive WebHook requests from, set the <see cref="P:Microsoft.AspNet.WebHooks.WebHookHandler.Receiver"/> property to the name of that receiver.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.WebHookHandler.Order">
+            <inheritdoc />
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.WebHookHandler.Receiver">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookHandler.ExecuteAsync(System.String,Microsoft.AspNet.WebHooks.WebHookHandlerContext)">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.WebHookQueueContext">
+            <summary>
+            Provides a queue context used by <see cref="T:Microsoft.AspNet.WebHooks.WebHookQueueHandler" /> to enqueue a WebHook for subsequent
+            processing.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookQueueContext.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNet.WebHooks.WebHookQueueContext"/> with default values.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookQueueContext.#ctor(System.String,Microsoft.AspNet.WebHooks.WebHookHandlerContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNet.WebHooks.WebHookQueueContext"/> with the given <paramref name="context"/>.
+            </summary>
+            <param name="receiver">The name of the <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> which processed the incoming WebHook. The
+            receiver can for example be <c>dropbox</c> or <c>github</c>.</param>
+            <param name="context">The <see cref="T:Microsoft.AspNet.WebHooks.WebHookHandlerContext"/> instance for this WebHook.</param>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.WebHookQueueContext.Receiver">
+            <summary>
+            Gets or sets the name of the <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> which processed the incoming WebHook. The
+            receiver can for example be <c>dropbox</c> or <c>github</c>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.WebHookQueueContext.Id">
+            <summary>
+            Gets or sets a (potentially empty) ID of a particular configuration for this WebHook. This ID can be 
+            used to differentiate between WebHooks from multiple senders registered with the same receiver.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.WebHookQueueContext.Actions">
+            <summary>
+            Gets the set of actions that caused the WebHook to be fired.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.WebHookQueueContext.Data">
+            <summary>
+            Gets or sets the optional data associated with this WebHook. The data typically represents the
+            HTTP request entity body of the incoming WebHook but can have been processed in various ways
+            by the corresponding <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.WebHookHandlerContext">
+            <summary>
+            Provides context for an incoming WebHook request. The context is passed to registered <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/> implementations 
+            which can process the incoming request accordingly.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookHandlerContext.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNet.WebHooks.WebHookHandlerContext"/> with the given set of <paramref name="actions"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.WebHookHandlerContext.Id">
+            <summary>
+            Gets or sets a (potentially empty) ID of a particular configuration for this WebHook. This ID can be 
+            used to differentiate between WebHooks from multiple senders registered with the same receiver.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.WebHookHandlerContext.Actions">
+            <summary>
+            Provides the set of actions that caused the WebHook to be fired.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.WebHookHandlerContext.Data">
+            <summary>
+            Gets or sets the optional data associated with this WebHook. The data typically represents the
+            HTTP request entity body of the incoming WebHook but can have been processed in various ways
+            by the corresponding <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.WebHookHandlerContext.Request">
+            <summary>
+            Gets or sets the <see cref="T:System.Net.Http.HttpRequestMessage"/> containing the WebHook.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.WebHookHandlerContext.RequestContext">
+            <summary>
+            Gets or sets the <see cref="T:System.Web.Http.Controllers.HttpRequestContext"/> for the incoming 
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.WebHookHandlerContext.Response">
+            <summary>
+            Gets or sets an optional <see cref="T:System.Net.Http.HttpResponseMessage"/> for the WebHook. If set by an <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/> 
+            then the execution of handlers will stop and that response will be used in response to the WebHook request.
+            If a response is not set then a default HTTP response will be sent. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.WebHookQueueHandler">
+            <summary>
+            Provides an abstract <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler" /> implementation which can be used to enqueue 
+            WebHooks for processing outside their immediate HTTP request/response context. This can for example 
+            be used to process WebHooks by a separate agent or at another time. It can also be used for WebHooks 
+            where the processing take longer than permitted by the immediate HTTP request/response context.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookQueueHandler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNet.WebHooks.WebHookQueueHandler"/> class with a default <see cref="P:Microsoft.AspNet.WebHooks.WebHookHandler.Order"/> of 50
+            and by default accepts WebHooks from all receivers. To limit which receiver this <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/>
+            will receive WebHook requests from, set the <see cref="P:Microsoft.AspNet.WebHooks.WebHookHandler.Receiver"/> property to the name of that receiver.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookQueueHandler.ExecuteAsync(System.String,Microsoft.AspNet.WebHooks.WebHookHandlerContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookQueueHandler.EnqueueAsync(Microsoft.AspNet.WebHooks.WebHookQueueContext)">
+            <summary>
+            Enqueues an incoming WebHook for processing outside its immediate HTTP request/response context.
+            Any exception thrown will result in an HTTP error response being returned to the party generating 
+            the WebHook.
+            </summary>
+            <param name="context">The <see cref="T:Microsoft.AspNet.WebHooks.WebHookQueueContext"/> for the WebHook to be enqueued.</param>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.WebHookReceiver">
+            <summary>
+            Provides an abstract <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> implementation which can be used to base other implementations on. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNet.WebHooks.WebHookReceiver"/> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.WebHookReceiver.Name">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.ReceiveAsync(System.String,System.Web.Http.Controllers.HttpRequestContext,System.Net.Http.HttpRequestMessage)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.ReadAsJsonAsync``1(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Reads the JSON HTTP request entity body.
+            </summary>
+            <param name="request">The current <see cref="T:System.Net.Http.HttpRequestMessage"/>.</param>
+            <returns>A <see cref="T:Newtonsoft.Json.Linq.JObject"/> containing the HTTP request entity body.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.SecretEqual(System.Byte[],System.Byte[])">
+            <summary>
+            Provides a time consistent comparison of two secrets in the form of two byte arrays.
+            </summary>
+            <param name="inputA">The first secret to compare.</param>
+            <param name="inputB">The second secret to compare.</param>
+            <returns>Returns <c>true</c> if the two secrets are equal, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.SecretEqual(System.String,System.String)">
+            <summary>
+            Provides a time consistent comparison of two secrets in the form of two strings.
+            </summary>
+            <param name="inputA">The first secret to compare.</param>
+            <param name="inputB">The second secret to compare.</param>
+            <returns>Returns <c>true</c> if the two secrets are equal, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.EnsureSecureConnection(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Some WebHooks rely on HTTPS for sending WebHook requests in a secure manner. A <see cref="T:Microsoft.AspNet.WebHooks.WebHookReceiver"/>
+            can call this method to ensure that the incoming WebHook request is using HTTPS. If the request is not
+            using HTTPS an error will be generated and the request will not be further processed.
+            </summary>
+            <remarks>This method does allow local HTTP requests using <c>localhost</c>.</remarks>
+            <param name="request">The current <see cref="T:System.Net.Http.HttpRequestMessage"/>.</param>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.EnsureValidCode(System.Net.Http.HttpRequestMessage,System.String)">
+            <summary>
+            For WebHooks providers with insufficient security considerations, the receiver can require that the WebHook URI must 
+            be an <c>https</c> URI and contain a 'code' query parameter with a value configured for that particular <paramref name="id"/>.
+            A sample WebHook URI is '<c>https://&lt;host&gt;/api/webhooks/incoming/&lt;receiver&gt;?code=83699ec7c1d794c0c780e49a5c72972590571fd8</c>'.
+            The 'code' parameter must be between 32 and 128 characters long.
+            </summary>
+            <param name="request">The current <see cref="T:System.Net.Http.HttpRequestMessage"/>.</param>
+            <param name="id">A (potentially empty) ID of a particular configuration for this <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/>. This
+            allows an <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> to support multiple WebHooks with individual configurations.</param>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.GetReceiverConfig(System.Net.Http.HttpRequestMessage,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Gets the locally configured WebHook secret key used to validate any signature header provided in a WebHook request.
+            </summary>
+            <param name="request">The current <see cref="T:System.Net.Http.HttpRequestMessage"/>.</param>
+            <param name="name">The name of the config to obtain. Typically this the name of the receiver, e.g. <c>github</c>.</param>
+            <param name="id">A (potentially empty) ID of a particular configuration for this <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/>. This
+            allows an <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> to support multiple WebHooks with individual configurations.</param>
+            <param name="minLength">The minimum length of the key value.</param>
+            <param name="maxLength">The maximum length of the key value.</param>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.GetRequestHeader(System.Net.Http.HttpRequestMessage,System.String)">
+            <summary>
+            Gets the value of a given HTTP request header field. If the field is either not present or has more than one value
+            then an error is generated.
+            </summary>
+            <param name="request">The current <see cref="T:System.Net.Http.HttpRequestMessage"/>.</param>
+            <param name="requestHeaderName">The name of the HTTP request header to look up.</param>
+            <returns>The signature header.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.ReadAsJsonAsync(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Reads the JSON HTTP request entity body as a JSON object.
+            </summary>
+            <param name="request">The current <see cref="T:System.Net.Http.HttpRequestMessage"/>.</param>
+            <returns>A <see cref="T:Newtonsoft.Json.Linq.JObject"/> containing the HTTP request entity body.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.ReadAsJsonArrayAsync(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Reads the JSON HTTP request entity body as a JSON array.
+            </summary>
+            <param name="request">The current <see cref="T:System.Net.Http.HttpRequestMessage"/>.</param>
+            <returns>A <see cref="T:Newtonsoft.Json.Linq.JObject"/> containing the HTTP request entity body.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.ReadAsJsonTokenAsync(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Reads the JSON HTTP request entity body as a JSON token.
+            </summary>
+            <param name="request">The current <see cref="T:System.Net.Http.HttpRequestMessage"/>.</param>
+            <returns>A <see cref="T:Newtonsoft.Json.Linq.JObject"/> containing the HTTP request entity body.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.ReadAsXmlAsync(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Reads the XML HTTP request entity body.
+            </summary>
+            <param name="request">The current <see cref="T:System.Net.Http.HttpRequestMessage"/>.</param>
+            <returns>A <see cref="T:Newtonsoft.Json.Linq.JObject"/> containing the HTTP request entity body.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.ReadAsFormDataAsync(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Reads the HTML Form Data HTTP request entity body.
+            </summary>
+            <param name="request">The current <see cref="T:System.Net.Http.HttpRequestMessage"/>.</param>
+            <returns>A <see cref="T:System.Collections.Specialized.NameValueCollection"/> containing the HTTP request entity body.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.CreateBadMethodResponse(System.Net.Http.HttpRequestMessage)">
+            <summary>
+             Creates a 405 "Method Not Allowed" response which a receiver can use to indicate that a request with a 
+             non-support HTTP method could not be processed.
+            </summary>
+            <param name="request">The current <see cref="T:System.Net.Http.HttpRequestMessage"/>.</param>
+            <returns>A fully initialized "Method Not Allowed" <see cref="T:System.Net.Http.HttpResponseMessage"/>.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.CreateBadSignatureResponse(System.Net.Http.HttpRequestMessage,System.String)">
+            <summary>
+             Creates a 400 "Bad Request" response which a receiver can use to indicate that a request had an invalid signature 
+             and as a result could not be processed.
+            </summary>
+            <param name="request">The current <see cref="T:System.Net.Http.HttpRequestMessage"/>.</param>
+            <param name="signatureHeaderName">The name of the HTTP header with invalid contents.</param>
+            <returns>A fully initialized "Bad Request" <see cref="T:System.Net.Http.HttpResponseMessage"/>.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiver.ExecuteWebHookAsync(System.String,System.Web.Http.Controllers.HttpRequestContext,System.Net.Http.HttpRequestMessage,System.Collections.Generic.IEnumerable{System.String},System.Object)">
+            <summary>
+            Processes the WebHook request by calling all registered <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/> instances. 
+            </summary>
+            <param name="id">A (potentially empty) ID of a particular configuration for this <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/>. This
+            allows an <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> to support multiple WebHooks with individual configurations.</param>
+            <param name="context">The <see cref="T:System.Web.Http.Controllers.HttpRequestContext"/> for this WebHook invocation.</param>
+            <param name="request">The <see cref="T:System.Net.Http.HttpRequestMessage"/> for this WebHook invocation.</param>
+            <param name="actions">The collection of actions associated with this WebHook invocation.</param>
+            <param name="data">Optional data associated with this WebHook invocation.</param>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.WebHookHandlerSorter">
+            <summary>
+            Provides an implementation of <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandlerSorter"/> which sorts registered
+            <see cref="T:Microsoft.AspNet.WebHooks.IWebHookHandler"/> instances based on their designated <see cref="P:Microsoft.AspNet.WebHooks.IWebHookHandler.Order"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookHandlerSorter.SortHandlers(System.Collections.Generic.IEnumerable{Microsoft.AspNet.WebHooks.IWebHookHandler})">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.WebHookReceiverConfig">
+            <summary>
+            Provides a default <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiverConfig"/> implementation which manages <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/>
+            configuration using application settings. The name of the application setting is '<c>MS_WebHookReceiverSecret_&lt;name&gt;</c>'
+            where '<c>name</c>' is the name of the receiver, for example <c>github</c>. The value is a comma-separated list of secrets,
+            using an ID to differentiate between them. For example, '<c>secret0, id1=secret1, id2=secret2</c>'.
+            The corresponding WebHook URI is of the form '<c>https://&lt;host&gt;/api/webhooks/incoming/custom/{id}</c>'.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiverConfig.#ctor(Microsoft.AspNet.WebHooks.Config.SettingsDictionary,Microsoft.AspNet.WebHooks.Diagnostics.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNet.WebHooks.WebHookReceiverConfig"/> which will use the application
+            settings set in the given <paramref name="settings"/>.
+            </summary>
+            <param name="settings">The <see cref="T:Microsoft.AspNet.WebHooks.Config.SettingsDictionary"/> to use for reading <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> configuration.</param>
+            <param name="logger">The <see cref="T:Microsoft.AspNet.WebHooks.Diagnostics.ILogger"/> to use.</param>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiverConfig.GetReceiverConfigAsync(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.WebHookReceiverManager">
+            <summary>
+            Manages registered <see cref="T:Microsoft.AspNet.WebHooks.IWebHookReceiver"/> instances.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiverManager.#ctor(System.Collections.Generic.IEnumerable{Microsoft.AspNet.WebHooks.IWebHookReceiver},Microsoft.AspNet.WebHooks.Diagnostics.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNet.WebHooks.WebHookReceiverManager"/> class with the given <paramref name="receivers"/>
+            and <paramref name="logger"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.WebHookReceiverManager.GetReceiver(System.String)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

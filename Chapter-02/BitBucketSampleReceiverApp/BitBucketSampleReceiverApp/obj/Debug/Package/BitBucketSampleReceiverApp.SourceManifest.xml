@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="E:\Gaurav Arora\Gaurav Arora - Writtings\Books\Syncfusion\ASPNET WebHooks\Code-examples\Chapter-02\BitBucketSampleReceiverApp\BitBucketSampleReceiverApp\obj\Debug\Package\PackageTmp" managedRuntimeVersion="v4.0" />
+  <setAcl path="E:\Gaurav Arora\Gaurav Arora - Writtings\Books\Syncfusion\ASPNET WebHooks\Code-examples\Chapter-02\BitBucketSampleReceiverApp\BitBucketSampleReceiverApp\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="E:\Gaurav Arora\Gaurav Arora - Writtings\Books\Syncfusion\ASPNET WebHooks\Code-examples\Chapter-02\BitBucketSampleReceiverApp\BitBucketSampleReceiverApp\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>
