@@ -30,8 +30,6 @@ namespace ActivityTracker.Enums
         commentupcated,
         [EnumDisplayName("pullrequest comment deleted")]
         [EnumDisplayCode("pull_request:comment_deleted")]
-        commentdeleted,
-
-
+        commentdeleted
     }
 }
