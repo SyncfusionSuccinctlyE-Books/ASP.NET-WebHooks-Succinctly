@@ -1,9 +1,7 @@
 ﻿using ActivityTracker.Helper;
 using Microsoft.AspNet.WebHooks;
-using System;
-using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ActivityTracker.WebHooks
@@ -14,7 +12,8 @@ namespace ActivityTracker.WebHooks
         {
             if (Common.IsBitBucketReceiver(receiver))
             {
-
+                var dataJObject = context.GetDataOrDefault<JObject>();
+                var action = context.Actions.First();
             }
 
             return Task.FromResult(true);
