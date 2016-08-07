@@ -11,7 +11,7 @@ namespace ActivityTracker.WebHooks
 {
     public class BitBucketWebHookHandler : WebHookHandler
     {
-        public override Task ExecuteAsync1(string receiver, WebHookHandlerContext context)
+        public override Task ExecuteAsync(string receiver, WebHookHandlerContext context)
         {
             if (Common.IsBitBucketReceiver(receiver))
             {
@@ -49,41 +49,5 @@ namespace ActivityTracker.WebHooks
             return Task.FromResult(true);
         }
 
-
-
-        public override Task ExecuteAsync(string receiver, WebHookHandlerContext context)
-        {
-            if (Common.IsBitBucketReceiver(receiver))
-            {
-                var dataJObject = context.GetDataOrDefault<JObject>();
-                var action = context.Actions.First();
-                switch (action)
-                {
-                    case BitBucketRepoAction.Push:
-                        //do something
-                        break;
-                    case BitBucketRepoAction.Fork:
-                        //do something
-                        break;
-                    case BitBucketRepoAction.Updated:
-                        //do something
-                        break;
-                    case BitBucketRepoAction.CommitCommentCreated:
-                        //do something
-                        break;
-                    case BitBucketRepoAction.CommitStatusCreated:
-                        //do something
-                        break;
-                    case BitBucketRepoAction.CommitStatusUpdated:
-                        //do something
-                        break;
-
-                    default:
-                        var data = dataJObject.ToString();
-                        break;
-                }
-            }
-            return Task.FromResult(true);
-        }
     }
 }
