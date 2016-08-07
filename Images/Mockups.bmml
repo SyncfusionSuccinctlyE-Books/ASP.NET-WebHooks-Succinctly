@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="2074" measuredH="459" mockupW="1687" mockupH="448">
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="2074" measuredH="459" mockupW="1935" mockupH="448">
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::RoundButton" x="1652" y="11" w="104" h="87" measuredW="32" measuredH="32" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
@@ -72,35 +72,35 @@
       </controlProperties>
     </control>
     <control controlID="15" controlTypeID="com.balsamiq.mockups::ModalScreen" x="1423" y="269" w="651" h="190" measuredW="320" measuredH="240" zOrder="1" locked="false" isInGroup="-1"/>
-    <control controlID="16" controlTypeID="com.balsamiq.mockups::PointyButton" x="387" y="140" w="-1" h="-1" measuredW="73" measuredH="27" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::PointyButton" x="1089" y="74" w="-1" h="-1" measuredW="73" measuredH="27" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Publisher</text>
       </controlProperties>
     </control>
-    <control controlID="17" controlTypeID="com.balsamiq.mockups::PointyButton" x="760" y="140" w="-1" h="-1" measuredW="84" measuredH="27" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::PointyButton" x="1462" y="74" w="-1" h="-1" measuredW="84" measuredH="27" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Subscriber</text>
       </controlProperties>
     </control>
-    <control controlID="18" controlTypeID="com.balsamiq.mockups::TextInput" x="572" y="100" w="97" h="-1" measuredW="77" measuredH="27" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="18" controlTypeID="com.balsamiq.mockups::TextInput" x="1274" y="34" w="97" h="-1" measuredW="77" measuredH="27" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <align>center</align>
         <text>Message-I</text>
       </controlProperties>
     </control>
-    <control controlID="19" controlTypeID="com.balsamiq.mockups::TextInput" x="572" y="141" w="97" h="-1" measuredW="82" measuredH="27" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::TextInput" x="1274" y="75" w="97" h="-1" measuredW="82" measuredH="27" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
         <align>center</align>
         <text>Message-II</text>
       </controlProperties>
     </control>
-    <control controlID="20" controlTypeID="com.balsamiq.mockups::TextInput" x="572" y="179" w="97" h="-1" measuredW="86" measuredH="27" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::TextInput" x="1274" y="113" w="97" h="-1" measuredW="86" measuredH="27" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
         <align>center</align>
         <text>Message-III</text>
       </controlProperties>
     </control>
-    <control controlID="25" controlTypeID="com.balsamiq.mockups::Arrow" x="460" y="148" w="83" h="10" measuredW="150" measuredH="100" zOrder="19" locked="false" isInGroup="-1">
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::Arrow" x="1162" y="82" w="83" h="10" measuredW="150" measuredH="100" zOrder="19" locked="false" isInGroup="-1">
       <controlProperties>
         <leftArrow>false</leftArrow>
         <rightArrow>true</rightArrow>
@@ -108,23 +108,28 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="26" controlTypeID="com.balsamiq.mockups::VCurly" x="670" y="83" w="14" h="140" measuredW="180" measuredH="140" zOrder="0" locked="false" isInGroup="-1">
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::VCurly" x="1372" y="17" w="14" h="140" measuredW="180" measuredH="140" zOrder="0" locked="false" isInGroup="-1">
       <controlProperties>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="27" controlTypeID="com.balsamiq.mockups::VCurly" x="537" y="83" w="20" h="140" measuredW="180" measuredH="140" zOrder="20" locked="false" isInGroup="-1">
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::VCurly" x="1239" y="17" w="20" h="140" measuredW="180" measuredH="140" zOrder="20" locked="false" isInGroup="-1">
       <controlProperties>
         <direction>right</direction>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="28" controlTypeID="com.balsamiq.mockups::Arrow" x="680" y="150" w="83" h="10" measuredW="150" measuredH="100" zOrder="21" locked="false" isInGroup="-1">
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::Arrow" x="1382" y="84" w="83" h="10" measuredW="150" measuredH="100" zOrder="21" locked="false" isInGroup="-1">
       <controlProperties>
         <leftArrow>false</leftArrow>
         <rightArrow>true</rightArrow>
         <stroke>solid</stroke>
         <text/>
+      </controlProperties>
+    </control>
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::DataGrid" x="139" y="42" w="-1" h="-1" measuredW="340" measuredH="195" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Name%5Cr%28job%20title%29%20%5E%2C%20Age%20%5Ev%2C%20Nickname%2C%20Employee%20v%0AGiacomo%20Guilizzoni%5CrFounder%20%26%20CEO%2C%2037%2C%20Peldi%2C%20%28o%29%0AMarco%20Botton%5CrTuttofare%2C%2034%2C%20%2C%20%5Bx%5D%0AMariah%20Maclachlan%5CrBetter%20Half%2C%2037%2C%20Patata%2C%20%5B-%5D%0AValerie%20Liberty%5CrHead%20Chef%2C%20%3A%29%2C%20Val%2C%20%5Bx%5D%0AGuido%20Jack%20Guilizzoni%2C%206%2C%20The%20Guids%2C%20%5B%5D%0A%7B65L%2C%200R%2C%2035%2C%200C%7D</text>
       </controlProperties>
     </control>
   </controls>
