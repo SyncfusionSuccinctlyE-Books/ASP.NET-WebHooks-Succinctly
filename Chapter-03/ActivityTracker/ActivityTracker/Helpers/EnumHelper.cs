@@ -83,8 +83,6 @@ namespace ActivityTracker.Helpers
         ///     The enum specified must implement the <see cref="EnumDisplayNameAttribute" />
         ///     custom attribute.  If it does not, an empty string is returned
         /// </remarks>
-        /// <summary>
-        /// </summary>
         /// <param name="enumeratedValue"></param>
         /// <param name="enumProp"></param>
         /// <returns></returns>

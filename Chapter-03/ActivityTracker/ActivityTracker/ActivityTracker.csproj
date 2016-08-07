@@ -101,6 +101,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Attributes\EnumDisplayCodeAttribute.cs" />
     <Compile Include="Attributes\EnumDisplayNameAttribute.cs" />
+    <Compile Include="Constants\BitBucketRepoAction.cs" />
     <Compile Include="Enums\EnumIssue.cs" />
     <Compile Include="Enums\EnumProp.cs" />
     <Compile Include="Enums\EnumPullRequest.cs" />
