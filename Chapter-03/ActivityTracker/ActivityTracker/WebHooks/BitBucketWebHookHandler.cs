@@ -40,23 +40,71 @@ namespace ActivityTracker.WebHooks
                         _activityRepository.Add(activityModel);
                         break;
                     case EnumRepository.Fork:
-                        //do something
+                        var activityModelFork = new ActivityModel
+                        {
+                            Activity = "Repository",
+                            Action = EnumHelper.GetEnumDisplayName(EnumRepository.Fork, EnumProp.DisplayCode),
+                            Description = EnumHelper.GetEnumDisplayName(EnumRepository.Fork, EnumProp.DisplayName),
+                            Data = dataJObject.ToString()
+                        };
+                        _activityRepository.Add(activityModelFork);
                         break;
                     case EnumRepository.Updated:
-                        //do something
+                        var activityModelUpdated = new ActivityModel
+                        {
+                            Activity = "Repository",
+                            Action = EnumHelper.GetEnumDisplayName(EnumRepository.Updated, EnumProp.DisplayCode),
+                            Description = EnumHelper.GetEnumDisplayName(EnumRepository.Updated, EnumProp.DisplayName),
+                            Data = dataJObject.ToString()
+                        };
+                        _activityRepository.Add(activityModelUpdated);
                         break;
                     case EnumRepository.Commitcommentcreated:
-                        //do something
+                        var activityModelCommit = new ActivityModel
+                        {
+                            Activity = "Repository",
+                            Action =
+                                EnumHelper.GetEnumDisplayName(EnumRepository.Commitcommentcreated, EnumProp.DisplayCode),
+                            Description =
+                                EnumHelper.GetEnumDisplayName(EnumRepository.Commitcommentcreated, EnumProp.DisplayName),
+                            Data = dataJObject.ToString()
+                        };
+                        _activityRepository.Add(activityModelCommit);
                         break;
                     case EnumRepository.Commitstatuscreated:
-                        //do something
+                        var activityModelCommitStatus = new ActivityModel
+                        {
+                            Activity = "Repository",
+                            Action =
+                                EnumHelper.GetEnumDisplayName(EnumRepository.Commitstatuscreated, EnumProp.DisplayCode),
+                            Description =
+                                EnumHelper.GetEnumDisplayName(EnumRepository.Commitstatuscreated, EnumProp.DisplayName),
+                            Data = dataJObject.ToString()
+                        };
+                        _activityRepository.Add(activityModelCommitStatus);
                         break;
                     case EnumRepository.Commitstatusupdated:
-                        //do something
+                        var activityModelCommitStatusUpdated = new ActivityModel
+                        {
+                            Activity = "Repository",
+                            Action =
+                                EnumHelper.GetEnumDisplayName(EnumRepository.Commitstatusupdated, EnumProp.DisplayCode),
+                            Description =
+                                EnumHelper.GetEnumDisplayName(EnumRepository.Commitstatusupdated, EnumProp.DisplayName),
+                            Data = dataJObject.ToString()
+                        };
+                        _activityRepository.Add(activityModelCommitStatusUpdated);
                         break;
 
                     default:
-                        var data = dataJObject.ToString();
+                        var activityModelUknown = new ActivityModel
+                        {
+                            Activity = "Uknown",
+                            Action = action,
+                            Description = "Uknown action",
+                            Data = dataJObject.ToString()
+                        };
+                        _activityRepository.Add(activityModelUknown);
                         break;
                 }
             }

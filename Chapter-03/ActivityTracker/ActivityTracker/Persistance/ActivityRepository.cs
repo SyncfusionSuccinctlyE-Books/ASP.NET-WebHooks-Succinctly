@@ -5,7 +5,7 @@ using ActivityTracker.Models;
 
 namespace ActivityTracker.Persistance
 {
-    public class ActivityRepository : IDisposable
+    public class ActivityRepository : IActivityRepository
     {
         private readonly ActivityContext _activityContext;
 
