@@ -1,19 +1,30 @@
-﻿(function () {
-    'use strict';
+﻿/// <reference path="../angular.js" />
 
-    angular
-        .module('app')
-        .controller('controller', controller);
+/// <reference path="app.js" />
 
-    controller.$inject = ['$location']; 
+app.controller('activityController', function($scope, activityService) {
 
-    function controller($location) {
-        /* jshint validthis:true */
-        var vm = this;
-        vm.title = 'controller';
+    refreshGrid();
 
-        activate();
+    function refreshGrid() {
+        activityService.getAll().then(function(promise) { $scope.Activities = promise.data },
+            function(err) {
+                $log.error('error while connecting API', err);
+            });
+    };
 
-        function activate() { }
-    }
-})();
+    $scope.get = function(activityId) {
+        activityService.get(activityId).then(function(promise) {
+                $scope.Id = promise.ActivityId;
+                $scope.Activity = promise.Activity;
+                $scope.Action = promise.Action;
+                $scope.Description = promise.Description;
+                $scope.Data = promise.Data;
+            },
+            function(err) {
+                $log.error('error while connecting API', err);
+            });
+    };
+
+
+});
