@@ -1,9 +1,9 @@
 ﻿/// <reference path="../angular.js" />
-
+var app;
 (function () {
     'use strict';
 
-    angular.module('activityModule', [
+  app =  angular.module('activityModule', [
         // Angular modules 
         'ngRoute'
 

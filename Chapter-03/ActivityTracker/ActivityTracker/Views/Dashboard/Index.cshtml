@@ -1,8 +1,35 @@
-﻿
-
-@{
+﻿@{
     ViewBag.Title = "Activity Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>title</h2>
+<div ng-app="activityModule">
+    <div class="container" ng-controller="activityController">
+        <h2>Contextual Classes</h2>
+        <p>Contextual classes can be used to color table rows or table cells. The classes that can be used are: .active, .success, .info, .warning, and .danger.</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Activity</th>
+                    <th>Action</th>
+                    <th>Description</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="activity in Activities">
+                <tr class="success">
+                    <td>{{activity.Activity}}</td>
+                    <td>{{activity.Action}}</td>
+                    <td>{{activity.Description}}</td>
+                    <td>{{activity.Data}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+@*@section scripts
+{
+    <script src="~/Scripts/app/app.js"></script>
+    <script src="~/Scripts/app/controller.js"></script>
+    <script src="~/Scripts/app/service.js"></script>
+}*@
