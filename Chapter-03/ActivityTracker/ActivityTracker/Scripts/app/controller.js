@@ -2,7 +2,7 @@
 
 /// <reference path="app.js" />
 
-app.controller('activityController', function($scope, activityService) {
+app.controller('activityController', function($scope, $log, activityService) {
 
     refreshGrid();
 
@@ -10,6 +10,7 @@ app.controller('activityController', function($scope, activityService) {
         activityService.getAll().then(function(promise) { $scope.Activities = promise.data },
             function(err) {
                 $log.error('error while connecting API', err);
+
             });
     };
 
