@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace ActivityTracker
 {
@@ -17,8 +14,11 @@ namespace ActivityTracker
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                defaults: new {id = RouteParameter.Optional}
+                );
+
+            // Initialize Bitbucket WebHook receiver
+            config.InitializeReceiveBitbucketWebHooks();
         }
     }
 }
