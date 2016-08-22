@@ -1,3 +1,5 @@
+--Create Database [Activity]
+--Go
 USE [Activity]
 GO
 
