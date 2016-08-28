@@ -16,12 +16,15 @@
                     <th>Data</th>
                 </tr>
             </thead>
+            @{ int count = 0;}
             <tbody ng-repeat="activity in Activities">
-                <tr class="success">
+                @{ count++;}
+                <tr ng-class-odd="'warning'" ng-class-even="'success'">
                     <td>{{activity.Activity}}</td>
                     <td>{{activity.Action}}</td>
                     <td>{{activity.Description}}</td>
-                    <td>{{activity.Data}}</td>
+                    @*<td>{{activity.Data}}</td>*@
+                    <td ng-click="getActivity({{activity.ActivityId}})">View Details</td>
                 </tr>
             </tbody>
         </table>
