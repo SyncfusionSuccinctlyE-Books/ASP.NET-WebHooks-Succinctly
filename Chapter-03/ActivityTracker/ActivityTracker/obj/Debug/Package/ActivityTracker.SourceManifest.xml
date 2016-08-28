@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sitemanifest>
-  <IisApp path="E:\Gaurav Arora\Gaurav Arora - Writtings\Books\Syncfusion\ASPNET WebHooks\Code-examples\Chapter-03\ActivityTracker\ActivityTracker\obj\Debug\Package\PackageTmp" managedRuntimeVersion="v4.0" />
-  <setAcl path="E:\Gaurav Arora\Gaurav Arora - Writtings\Books\Syncfusion\ASPNET WebHooks\Code-examples\Chapter-03\ActivityTracker\ActivityTracker\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
-  <setAcl path="E:\Gaurav Arora\Gaurav Arora - Writtings\Books\Syncfusion\ASPNET WebHooks\Code-examples\Chapter-03\ActivityTracker\ActivityTracker\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <IisApp path="D:\Github\asp.net-webhooks-succinctly\Chapter-03\ActivityTracker\ActivityTracker\obj\Debug\Package\PackageTmp" managedRuntimeVersion="v4.0" />
+  <setAcl path="D:\Github\asp.net-webhooks-succinctly\Chapter-03\ActivityTracker\ActivityTracker\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="D:\Github\asp.net-webhooks-succinctly\Chapter-03\ActivityTracker\ActivityTracker\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
 </sitemanifest>

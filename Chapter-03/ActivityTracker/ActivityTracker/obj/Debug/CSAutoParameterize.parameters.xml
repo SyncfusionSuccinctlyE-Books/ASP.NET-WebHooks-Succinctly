@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="ActivityDBConnectionString-Web.config Connection String" description="ActivityDBConnectionString Connection String used in web.config by the application to access the database." defaultValue="data source=.;initial catalog=Activity;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="E:\\Gaurav\ Arora\\Gaurav\ Arora\ -\ Writtings\\Books\\Syncfusion\\ASPNET\ WebHooks\\Code-examples\\Chapter-03\\ActivityTracker\\ActivityTracker\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ActivityDBConnectionString']/@connectionString" />
+  <parameter name="ActivityDBConnectionString-Web.config Connection String" description="ActivityDBConnectionString Connection String used in web.config by the application to access the database." defaultValue="Server=yfe4v6xck0.database.windows.net;Database=gaurav;User Id=gaurav;Password=Its@123456;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Github\\asp\.net-webhooks-succinctly\\Chapter-03\\ActivityTracker\\ActivityTracker\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ActivityDBConnectionString']/@connectionString" />
   </parameter>
 </parameters>
