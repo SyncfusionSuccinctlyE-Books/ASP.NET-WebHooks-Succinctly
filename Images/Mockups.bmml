@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="2074" measuredH="459" mockupW="1935" mockupH="448">
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="2074" measuredH="459" mockupW="1914" mockupH="448">
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::RoundButton" x="1652" y="11" w="104" h="87" measuredW="32" measuredH="32" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
@@ -127,9 +127,57 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="29" controlTypeID="com.balsamiq.mockups::DataGrid" x="139" y="42" w="-1" h="-1" measuredW="340" measuredH="195" zOrder="22" locked="false" isInGroup="-1">
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::DataGrid" x="1010" y="201" w="-1" h="-1" measuredW="340" measuredH="195" zOrder="22" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Name%5Cr%28job%20title%29%20%5E%2C%20Age%20%5Ev%2C%20Nickname%2C%20Employee%20v%0AGiacomo%20Guilizzoni%5CrFounder%20%26%20CEO%2C%2037%2C%20Peldi%2C%20%28o%29%0AMarco%20Botton%5CrTuttofare%2C%2034%2C%20%2C%20%5Bx%5D%0AMariah%20Maclachlan%5CrBetter%20Half%2C%2037%2C%20Patata%2C%20%5B-%5D%0AValerie%20Liberty%5CrHead%20Chef%2C%20%3A%29%2C%20Val%2C%20%5Bx%5D%0AGuido%20Jack%20Guilizzoni%2C%206%2C%20The%20Guids%2C%20%5B%5D%0A%7B65L%2C%200R%2C%2035%2C%200C%7D</text>
+      </controlProperties>
+    </control>
+    <control controlID="30" controlTypeID="com.balsamiq.mockups::FieldSet" x="160" y="67" w="186" h="178" measuredW="200" measuredH="170" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Sender</text>
+      </controlProperties>
+    </control>
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::FieldSet" x="442" y="67" w="186" h="178" measuredW="200" measuredH="170" zOrder="24" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>1</backgroundAlpha>
+        <text>Receiver</text>
+      </controlProperties>
+    </control>
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::PointyButton" x="175" y="132" w="139" h="-1" measuredW="131" measuredH="27" zOrder="25" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Document%20Created</text>
+      </controlProperties>
+    </control>
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::TextInput" x="478" y="105" w="97" h="-1" measuredW="19" measuredH="27" zOrder="26" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>center</align>
+        <text>I</text>
+      </controlProperties>
+    </control>
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::TextInput" x="477" y="145" w="97" h="-1" measuredW="23" measuredH="27" zOrder="27" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>center</align>
+        <text>II</text>
+      </controlProperties>
+    </control>
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::TextInput" x="478" y="186" w="97" h="-1" measuredW="28" measuredH="27" zOrder="28" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>center</align>
+        <text>III</text>
+      </controlProperties>
+    </control>
+    <control controlID="38" controlTypeID="com.balsamiq.mockups::VCurly" x="417" y="105" w="25" h="74" measuredW="180" measuredH="140" zOrder="29" locked="false" isInGroup="-1">
+      <controlProperties>
+        <direction>right</direction>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::Arrow" x="346" y="140" w="83" h="10" measuredW="150" measuredH="100" zOrder="30" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>false</leftArrow>
+        <rightArrow>true</rightArrow>
+        <stroke>solid</stroke>
+        <text/>
       </controlProperties>
     </control>
   </controls>
