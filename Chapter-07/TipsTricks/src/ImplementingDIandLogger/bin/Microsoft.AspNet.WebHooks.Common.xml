@@ -1,0 +1,519 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.AspNet.WebHooks.Common</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.AspNet.WebHooks.Config.ConnectionSettings">
+            <summary>
+            This class provides configuration information for connection strings.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Config.ConnectionSettings.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNet.WebHooks.Config.ConnectionSettings"/> with a given <paramref name="name"/>
+            and <paramref name="connectionString"/>.
+            </summary>
+            <param name="name">The name of the connection string setting.</param>
+            <param name="connectionString">The actual connection string.</param>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Config.ConnectionSettings.Name">
+            <summary>
+            Gets or sets the name of the connection string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Config.ConnectionSettings.ConnectionString">
+            <summary>
+            Gets or sets the actual connection string.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Config.ConnectionSettings.Provider">
+            <summary>
+            Gets or sets the provider to be used by this connection string, e.g. <c>System.Data.SqlClient</c>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.Config.DefaultSettingsProvider">
+            <summary>
+            Provides a default <see cref="T:Microsoft.AspNet.WebHooks.Config.SettingsDictionary"/> based on application settings from the global 
+            <see cref="T:System.Configuration.ConfigurationManager"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Config.DefaultSettingsProvider.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNet.WebHooks.Config.DefaultSettingsProvider"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Config.DefaultSettingsProvider.GetSettings">
+            <summary>
+            Initializes a <see cref="T:Microsoft.AspNet.WebHooks.Config.SettingsDictionary"/> instance using application settings.
+            </summary>
+            <returns>A fully initialized <see cref="T:Microsoft.AspNet.WebHooks.Config.SettingsDictionary"/>.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Config.DefaultSettingsProvider.InitializeSettings">
+            <summary>
+            Initializes the <see cref="T:Microsoft.AspNet.WebHooks.Config.SettingsDictionary"/> provided in response to <see cref="M:Microsoft.AspNet.WebHooks.Config.DefaultSettingsProvider.GetSettings"/>.
+            </summary>
+            <returns>A fully initialized <see cref="T:Microsoft.AspNet.WebHooks.Config.SettingsDictionary"/>.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Config.DefaultSettingsProvider.GetAppSettings">
+            <summary>
+            Gets the current application settings in a mock-able manner.
+            </summary>
+            <returns>A <see cref="T:System.Collections.Specialized.NameValueCollection"/> containing the application settings.</returns>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.Config.SettingsDictionary">
+            <summary>
+            Contains WebHook settings that are provided by the outside, for example through application settings.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Config.SettingsDictionary.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNet.WebHooks.Config.SettingsDictionary"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Config.SettingsDictionary.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNet.WebHooks.Config.SettingsDictionary"/> class with the specified serialization information and streaming context.
+            </summary>
+            <param name="info">A <see cref="T:System.Runtime.Serialization.SerializationInfo"/> containing information about the <see cref="T:Microsoft.AspNet.WebHooks.Config.SettingsDictionary"/> to be initialized.</param>
+            <param name="context">A <see cref="T:System.Runtime.Serialization.StreamingContext"/> that indicates the source destination and context information of a serialized stream.</param>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Config.SettingsDictionary.Connections">
+            <summary>
+            Gets the set of connection strings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Config.SettingsDictionary.Item(System.String)">
+            <summary>
+            Gets or sets the value associated with the specified key.
+            </summary>
+            <param name="key">The key of the value to get or set.</param>
+            <returns>The value associated with the specified key. If the specified key is not found, a get operation throws a <see cref="T:System.Collections.Generic.KeyNotFoundException"/>, and a set operation creates a new element with the specified key.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Config.SettingsDictionary.GetValueOrDefault(System.String)">
+            <summary>
+            Gets the value with the given key, or null if the key is not present. 
+            </summary>
+            <param name="key">The key whose value to get.</param>
+            <returns>The value with the specified key if found; otherwise null.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Config.SettingsDictionary.SetOrClearValue(System.String,System.String)">
+            <summary>
+            Sets the entry with the given key to the given value. If value is the default value
+            then the entry is removed.
+            </summary>
+            <param name="key">The key of the entry.</param>
+            <param name="value">The value (or default value).</param>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Config.SettingsDictionary.IsTrue(System.String)">
+            <summary>
+            Returns <c>true</c> if the key has a value set to 'true'; otherwise <c>false</c>.
+            </summary>
+            <param name="key">The key to evaluate the value for.</param>
+            <returns><c>true</c> if the value is set to 'true'; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.Config.WebHooksConfig">
+            <summary>
+            Provides initialization for WebHooks.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Config.WebHooksConfig.Config">
+            <summary>
+            Gets the <see cref="T:System.Web.Http.HttpConfiguration"/> that this class was initialized with.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Config.WebHooksConfig.Initialize(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Ensures that the module is loaded on startup.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/> to use for initializing WebHooks.</param>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Config.WebHooksConfig.Reset">
+            <summary>
+            For testing purposes
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.Diagnostics.ILogger">
+            <summary>
+            Provides a simple logging abstraction which can be used to pipe WebHook logs into any
+            logging infrastructure of choice.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Diagnostics.ILogger.Log(System.Web.Http.Tracing.TraceLevel,System.String,System.Exception)">
+            <summary>
+            Logs a <paramref name="message"/> with a given <paramref name="level"/>.
+            </summary>
+            <param name="level">The <see cref="T:System.Web.Http.Tracing.TraceLevel"/> to log this message as.</param>
+            <param name="message">The message to log.</param>
+            <param name="ex">An optional <see cref="T:System.Exception"/> to log.</param>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.Diagnostics.TraceLogger">
+            <summary>
+            Provides an implementation of the <see cref="T:Microsoft.AspNet.WebHooks.Diagnostics.ILogger"/> interface which writes to <see cref="T:System.Diagnostics.Trace"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Diagnostics.TraceLogger.Log(System.Web.Http.Tracing.TraceLevel,System.String,System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.DependencyScopeExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Web.Http.Dependencies.IDependencyScope"/> facilitating getting the services used.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.DependencyScopeExtensions.GetLogger(System.Web.Http.Dependencies.IDependencyScope)">
+            <summary>
+            Gets an <see cref="T:Microsoft.AspNet.WebHooks.Diagnostics.ILogger"/> implementation registered with the Dependency Injection engine
+            or a default <see cref="T:System.Diagnostics.Trace"/> implementation if none are registered.
+            </summary>
+            <param name="services">The <see cref="T:System.Web.Http.Dependencies.IDependencyScope"/> implementation.</param>
+            <returns>The registered <see cref="T:Microsoft.AspNet.WebHooks.Diagnostics.ILogger"/> instance or a default implementation if none are registered.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.DependencyScopeExtensions.GetSettings(System.Web.Http.Dependencies.IDependencyScope)">
+            <summary>
+            Gets a <see cref="T:Microsoft.AspNet.WebHooks.Config.SettingsDictionary"/> instance registered with the Dependency Injection engine
+            or a default implementation based on application settings if none are registered.
+            </summary>
+            <param name="services">The <see cref="T:System.Web.Http.Dependencies.IDependencyScope"/> implementation.</param>
+            <returns>The registered <see cref="T:Microsoft.AspNet.WebHooks.Config.SettingsDictionary"/> instance or a default implementation if none are registered.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.DependencyScopeExtensions.GetService``1(System.Web.Http.Dependencies.IDependencyScope)">
+            <summary>
+            Gets the <typeparamref name="TService"/> instance registered with the Dependency Injection engine or
+            null if none are registered.
+            </summary>
+            <typeparam name="TService">The type of services to lookup.</typeparam>
+            <param name="services">The <see cref="T:System.Web.Http.Dependencies.IDependencyScope"/> implementation.</param>
+            <returns>The registered instance or null if none are registered.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.DependencyScopeExtensions.GetServices``1(System.Web.Http.Dependencies.IDependencyScope)">
+            <summary>
+            Gets the set of <typeparamref name="TService"/> instances registered with the Dependency Injection engine
+            or an empty collection if none are registered.
+            </summary>
+            <typeparam name="TService">The type of services to lookup.</typeparam>
+            <param name="services">The <see cref="T:System.Web.Http.Dependencies.IDependencyScope"/> implementation.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing the registered instances.</returns>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.LogExtensions">
+            <summary>
+            Provides extension methods for logging.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.LogExtensions.Error(Microsoft.AspNet.WebHooks.Diagnostics.ILogger,System.String)">
+            <summary>
+            Logs an error message.
+            </summary>
+            <param name="log">The <see cref="T:Microsoft.AspNet.WebHooks.Diagnostics.ILogger"/> implementation to log with.</param>
+            <param name="message">The message to log.</param>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.LogExtensions.Error(Microsoft.AspNet.WebHooks.Diagnostics.ILogger,System.String,System.Exception)">
+            <summary>
+            Logs an error message.
+            </summary>
+            <param name="log">The <see cref="T:Microsoft.AspNet.WebHooks.Diagnostics.ILogger"/> implementation to log with.</param>
+            <param name="message">The message to log.</param>
+            <param name="ex">Optional exception.</param>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.LogExtensions.Warn(Microsoft.AspNet.WebHooks.Diagnostics.ILogger,System.String)">
+            <summary>
+            Logs a warning message.
+            </summary>
+            <param name="log">The <see cref="T:Microsoft.AspNet.WebHooks.Diagnostics.ILogger"/> implementation to log with.</param>
+            <param name="message">The message to log.</param>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.LogExtensions.Info(Microsoft.AspNet.WebHooks.Diagnostics.ILogger,System.String)">
+            <summary>
+            Logs an informational message.
+            </summary>
+            <param name="log">The <see cref="T:Microsoft.AspNet.WebHooks.Diagnostics.ILogger"/> implementation to log with.</param>
+            <param name="message">The message to log.</param>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.LogExtensions.Debug(Microsoft.AspNet.WebHooks.Diagnostics.ILogger,System.String)">
+            <summary>
+            Logs a debug message.
+            </summary>
+            <param name="log">The <see cref="T:Microsoft.AspNet.WebHooks.Diagnostics.ILogger"/> implementation to log with.</param>
+            <param name="message">The message to log.</param>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.Properties.CommonResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.CommonResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.CommonResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.CommonResources.Config_NotInitialized">
+            <summary>
+              Looks up a localized string similar to WebHooks support has not been initialized correctly. Please call the initializer &apos;{0}&apos; on startup. See &apos;http://go.microsoft.com/fwlink/?LinkId=799408&apos; for details on how to initialize WebHooks..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.CommonResources.DateTime_BadFormat">
+            <summary>
+              Looks up a localized string similar to Cannot read value &apos;{0}&apos; as type &apos;{1}&apos;..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.CommonResources.DateTime_NullError">
+            <summary>
+              Looks up a localized string similar to Cannot convert null value to type &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.CommonResources.EncodingUtils_InvalidHexValue">
+            <summary>
+              Looks up a localized string similar to Input is not a valid hex-encoded string: &apos;{0}&apos;. Please provide a valid hex-encoded string..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.CommonResources.Encryptor_InvalidHash">
+            <summary>
+              Looks up a localized string similar to Could not verify the validity of the encrypted data..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.CommonResources.Encryptor_InvalidKey">
+            <summary>
+              Looks up a localized string similar to The encryption key provided by setting &apos;{0}&apos; must be exactly 32 bytes long when encoded as UTF-8 but was found to be {1} bytes long..
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNet.WebHooks.Properties.CommonResources.Settings_KeyNotFound">
+            <summary>
+              Looks up a localized string similar to No WebHook setting was found with key &apos;{0}&apos;. Please ensure that the WebHooks module is initialized with the correct application settings..
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.Serialization.UnixTimeConverter">
+            <summary>
+            Converts a Unix time stamp to and from a <see cref="T:System.DateTime"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Serialization.UnixTimeConverter.#ctor">
+            <summary>
+            Converts string or integer values to a <see cref="T:System.DateTime"/>. By default the 
+            <see cref="T:System.DateTime"/> gets serialized to an integer. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Serialization.UnixTimeConverter.#ctor(System.Boolean)">
+            <summary>
+            Converts string values to a <see cref="T:System.DateTime"/>. By default the 
+            <see cref="T:System.DateTime"/> gets serialized to an integer.
+            </summary>
+            <param name="stringConverter">When <c>true</c> only deserializes string values and serializes to a string value; 
+            otherwise deserializes string and integer values and serializes to an integer value.</param>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Serialization.UnixTimeConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Serialization.UnixTimeConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.EncodingUtilities">
+            <summary>
+            Utilities for converting to and from hex-encoded and base64-encoded strings.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.EncodingUtilities.ToHex(System.Byte[])">
+            <summary>
+            Converts a <see cref="T:byte[]"/> to a hex-encoded string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.EncodingUtilities.FromHex(System.String)">
+            <summary>
+            Converts a hex-encoded string to a <see cref="T:byte[]"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.EncodingUtilities.ToBase64(System.Byte[],System.Boolean)">
+            <summary>
+            Converts a <see cref="T:byte[]"/> to a base64-encoded string.
+            </summary>
+            <param name="data">The input to encode.</param>
+            <param name="uriSafe">Substitute the Base64 characters '+' and '/' with the URI safe characters '-' and '_'. In addition, no padding is added.</param>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.EncodingUtilities.FromBase64(System.String)">
+            <summary>
+            Converts a base64-encoded string to a <see cref="T:byte[]"/> (with or without URI safe mode encoding).
+            </summary>
+            <param name="content">The Base64 encoded content</param>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.Services.CommonServices">
+            <summary>
+            Provides singleton instances of common WebHook services such as a default
+            <see cref="T:Microsoft.AspNet.WebHooks.Diagnostics.ILogger"/> implementation, <see cref="T:Microsoft.AspNet.WebHooks.Config.SettingsDictionary"/> etc.
+            If alternative implementations are provided by a Dependency Injection engine then
+            those instances are used instead.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Services.CommonServices.GetLogger">
+            <summary>
+            Gets a default <see cref="T:Microsoft.AspNet.WebHooks.Diagnostics.ILogger"/> implementation which is used if none are registered with the
+            Dependency Engine.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Services.CommonServices.GetSettings">
+            <summary>
+            Gets a default <see cref="T:Microsoft.AspNet.WebHooks.Config.SettingsDictionary"/> instance which is used if none are registered with the
+            Dependency Engine.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Services.CommonServices.Reset">
+            <summary>
+            For testing purposes
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.Utilities.Hasher">
+            <summary>
+            Provides non-cryptographic hashing functions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Utilities.Hasher.GetFnvHash32(System.String)">
+            <summary>
+            Gets a FNV-1a 32-bit hash of the provided <paramref name="content"/>. The FNV-1a algorithm
+            is used in many context including DNS servers, database indexing hashes, non-cryptographic file
+            fingerprints to name a few. For more information about FNV, please see the IETF document
+            <c>The FNV Non-Cryptographic Hash Algorithm</c> as well as <c>http://isthe.com/chongo/tech/comp/fnv/</c>.
+            </summary>
+            <param name="content">The content to hash.</param>
+            <returns>The computed hash.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Utilities.Hasher.GetFnvHash32AsString(System.String)">
+            <summary>
+            Gets a string representation of a FNV-1a 32-bit hash of the provided <paramref name="content"/>. The FNV-1a 
+            algorithm is used in many context including DNS servers, database indexing hashes, non-cryptographic file
+            fingerprints to name a few. For more information about FNV, please see the IETF document
+            <c>The FNV Non-Cryptographic Hash Algorithm</c> as well as <c>http://isthe.com/chongo/tech/comp/fnv/</c>.
+            </summary>
+            <param name="content">The content to hash.</param>
+            <returns>A string representation of the computed hash.</returns>
+        </member>
+        <member name="T:Microsoft.AspNet.WebHooks.Utilities.TypeUtilities">
+            <summary>
+            Provides various <see cref="T:System.Type"/> related utilities.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Utilities.TypeUtilities.IsType``1(System.Type)">
+            <summary>
+            Checks whether <paramref name="type"/> is a visible, non-abstract class of type <typeparamref name="T"/> or 
+            derived from type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type to test against.</typeparam>
+            <param name="type">The type to test.</param>
+            <returns><c>true</c> if the type is of type <typeparamref name="T"/>.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Utilities.TypeUtilities.GetTypes(System.Collections.Generic.IEnumerable{System.Reflection.Assembly},System.Func{System.Type,System.Boolean})">
+            <summary>
+            Finds types matching the <paramref name="predicate"/> in a given set of <paramref name="assemblies"/>.
+            </summary>
+            <param name="assemblies">The assemblies to look through.</param>
+            <param name="predicate">The predicate to apply to the search.</param>
+            <returns>An <see cref="T:System.Collections.Generic.ICollection`1"/> of types found.</returns>
+        </member>
+        <member name="M:Microsoft.AspNet.WebHooks.Utilities.TypeUtilities.GetInstances``1(System.Collections.Generic.IEnumerable{System.Reflection.Assembly},System.Func{System.Type,System.Boolean})">
+            <summary>
+            Finds types matching the <paramref name="predicate"/> in a given set of <paramref name="assemblies"/> 
+            and creates instances of those type using the default constructor.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Type"/> of the instances to create.</typeparam>
+            <param name="assemblies">The assemblies to look through.</param>
+            <param name="predicate">The predicate to apply to the search.</param>
+            <returns>An <see cref="T:System.Collections.Generic.ICollection`1"/> of instances found.</returns>
+        </member>
+        <member name="T:System.Collections.Generic.DictionaryExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.DictionaryExtensions.TryGetValue``1(System.Collections.Generic.IDictionary{System.String,System.Object},System.String,``0@)">
+            <summary>
+            Gets the value of <typeparamref name="TValue"/> with the given key, or the <c>default</c> value 
+            if the key is not present or the value is not of type <typeparamref name="TValue"/>. 
+            </summary>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="dictionary">The <see cref="T:System.Collections.Generic.IDictionary`2"/> instance <c>TKey</c> is of type <see cref="T:System.String"/> and <c>TValue</c> of type <see cref="T:System.Object"/>.</param>
+            <param name="key">The key whose value to get.</param>
+            <param name="value">When this method returns, the value with the specified key if found; otherwise the default value.</param>
+            <returns><c>true</c> if key was found and value is of type <typeparamref name="TValue"/> and non-null; otherwise false.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.DictionaryExtensions.GetValueOrDefault``1(System.Collections.Generic.IDictionary{System.String,System.Object},System.String)">
+            <summary>
+            Gets the value of <typeparamref name="TValue"/> with the given key, or the <c>default</c> value 
+            if the key is not present or the value is not of type <typeparamref name="TValue"/>. 
+            </summary>
+            <typeparam name="TValue">The type of the value.</typeparam>
+            <param name="dictionary">The <see cref="T:System.Collections.Generic.IDictionary`2"/> instance <c>TKey</c> is of type <see cref="T:System.String"/> and <c>TValue</c> of type <see cref="T:System.Object"/>.</param>
+            <param name="key">The key whose value to get.</param>
+            <returns>The value with the specified key if found; otherwise the default value.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.DictionaryExtensions.SetOrClearValue``1(System.Collections.Generic.IDictionary{System.String,System.Object},System.String,``0)">
+            <summary>
+            Sets the entry with the given key to the given value. If value is the default value
+            then the entry is removed.
+            </summary>
+            <typeparam name="T">Type of value to be set or cleared.</typeparam>
+            <param name="dictionary">The dictionary to insert of clear a value from.</param>
+            <param name="key">The key of the entry.</param>
+            <param name="value">The value (or default value).</param>
+        </member>
+        <member name="T:System.Net.Http.HttpContentExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue"/>.
+            </summary>
+        </member>
+        <member name="M:System.Net.Http.HttpContentExtensions.IsJson(System.Net.Http.HttpContent)">
+            <summary>
+            Determines whether the specified content is JSON indicated by a 
+            content type of either <c>application/json</c>, <c>text/json</c>, <c>application/xyz+json</c>,
+            or <c>text/xyz+json</c>. The term <c>xyz</c> can for example be <c>hal</c> or some other 
+            JSON derived media type.
+            </summary>
+            <returns>true if the specified content is JSON content; otherwise, false.</returns>
+            <param name="content">The content to check.</param>
+        </member>
+        <member name="M:System.Net.Http.HttpContentExtensions.IsXml(System.Net.Http.HttpContent)">
+            <summary>
+            Determines whether the specified content is XML indicated by a 
+            content type of either <c>application/xml</c>, <c>text/xml</c>, <c>application/xyz+xml</c>,
+            or <c>text/xyz+xml</c>. The term <c>xyz</c> can for example be <c>rdf</c> or some other 
+            XML derived media type.
+            </summary>
+            <returns>true if the specified content is JSON content; otherwise, false.</returns>
+            <param name="content">The content to check.</param>
+        </member>
+        <member name="T:System.StringExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="M:System.StringExtensions.SplitAndTrim(System.String,System.Char[])">
+            <summary>
+            Splits a string into segments based on a given <paramref name="separator"/>. The segments are 
+            trimmed and empty segments containing only white space are removed.
+            </summary>
+            <param name="input">The string to split.</param>
+            <param name="separator">An array of Unicode characters that delimit the substrings in this instance, an empty array that contains no delimiters, or null.</param>
+            <returns>An <see cref="T:string[]"/> containing the resulting segments.</returns>
+        </member>
+        <member name="T:System.UriExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="M:System.UriExtensions.IsHttp(System.Uri)">
+            <summary>
+            Checks to see if the URI scheme is 'http'. The check is case-insensitive.
+            </summary>
+            <param name="input">The URI to verify.</param>
+            <returns><c>true</c> if URI scheme is 'http'; false otherwise.</returns>
+        </member>
+        <member name="M:System.UriExtensions.IsHttps(System.Uri)">
+            <summary>
+            Checks to see if the URI scheme is 'https'. The check is case-insensitive.
+            </summary>
+            <param name="input">The URI to verify.</param>
+            <returns><c>true</c> if URI scheme is 'https'; false otherwise.</returns>
+        </member>
+    </members>
+</doc>
