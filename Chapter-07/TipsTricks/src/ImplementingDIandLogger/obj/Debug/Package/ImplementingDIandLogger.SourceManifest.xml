@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="D:\Github\asp.net-webhooks-succinctly\Chapter-07\TipsTricks\src\ImplementingDIandLogger\obj\Debug\Package\PackageTmp" />
+  <setAcl path="D:\Github\asp.net-webhooks-succinctly\Chapter-07\TipsTricks\src\ImplementingDIandLogger\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="D:\Github\asp.net-webhooks-succinctly\Chapter-07\TipsTricks\src\ImplementingDIandLogger\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>
