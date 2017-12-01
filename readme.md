@@ -1,7 +1,10 @@
-#ASP.NET WebHooks Succinctly
-ASP.NET Web Hooks provide support for sending and receiving WebHooks.
+# ASP.NET WebHooks Succinctly
+This is the companion repo for [*ASP.NET WebHooks Succinctly*](https://www.syncfusion.com/resources/techportal/details/ebooks/ASPNET_Webhooks_Succinctly) by Gaurav Arora. Published by Syncfusion.
 
-##Code-Examples
-Here, you can find and play with code examples mentioned in the book ```ASP.NET WebHooks Succinctly``` by ```Gaurav Kumar Arora```.
+[![cover](https://github.com/https://github.com/SyncfusionSuccinctlyE-Books/ASP.NET-WebHooks-Succinctly/blob/master/cover.png)](https://www.syncfusion.com/resources/techportal/details/ebooks/ASPNET_Webhooks_Succinctly)
+
+## Looking for more _Succinctly_ titles?
+
+Check out the entire library of more than 130 _Succinctly_ e-books at [https://www.syncfusion.com/resources/techportal/ebooks](https://www.syncfusion.com/resources/techportal/ebooks).
 
 
